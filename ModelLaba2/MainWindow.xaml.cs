@@ -12,7 +12,7 @@ namespace ModelLaba2
         {
             InitializeComponent();
             var simulation = new AssemblyLineSimulation();
-            simulation.Simulate(100); // Запуск моделирования с 100 изделиями
+            simulation.Simulate(50); // Запуск моделирования с 100 изделиями
         }
     }
 }

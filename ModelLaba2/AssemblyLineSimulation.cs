@@ -17,8 +17,8 @@ public class AssemblyLineSimulation
         // Инициализация рабочих мест
         workstations = new List<Workstation>
         {
-            new() { Queue = new Queue<Product>(), ProcessingTime = 1.25 },
-            new() { Queue = new Queue<Product>(), ProcessingTime = 0.5 }
+            new() { Queue = new Queue<Product>(), ProcessingTime = 1.25, Id = 0},
+            new() { Queue = new Queue<Product>(), ProcessingTime = 0.5, Id = 1}
         };
 
         delayedProducts = new List<Product>();
@@ -89,13 +89,15 @@ public class AssemblyLineSimulation
             Product product = workstation.Queue.Dequeue();
             double processingTime = product.ProcessingTime;
             currentTime += processingTime;
-
             if (workstation == workstations[0] && workstations[1].Queue.Count < 2)
             {
                 ProcessWorkstation(workstations[1]);
                 workstation.IsBlocked = false;
             }
+            Console.WriteLine(currentTime);
+            Console.WriteLine($"Изделие {product.Id} обработано на рабочем месте {workstation.Id} за время {processingTime}");
         }
+        
     }
     // Метод для генерации случайных чисел по экспоненциальному распределению
     private double ExponentialRandom(double lambda)
